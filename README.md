@@ -1,9 +1,11 @@
 ## Set up Derby Database in Netbeans
 ### 1. Create a new Database
+
 <div align=center>
-
 <img src="https://img-blog.csdnimg.cn/20181102075242296.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1plbkdfeGlhbmd0,size_16,color_FFFFFF,t_70" width="50%" alt=""/>
-
+ </div>
+ 
+ <div align=center>
 <img src=" https://img-blog.csdnimg.cn/20181102074816332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1plbkdfeGlhbmd0,size_16,color_FFFFFF,t_70" width="50%" alt=""/>
  </div>
 
