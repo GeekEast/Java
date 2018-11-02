@@ -33,75 +33,75 @@ System.out.println("derby connection was established successfully.");
 ```
 ##### Create Table
 ```java
-        // create a new Statement object
-        Statement stat = conn.createStatement();
+// create a new Statement object
+Statement stat = conn.createStatement();
 
-        // create table
-        try {
-            stat.executeUpdate("CREATE TABLE Persons ("
-                    + "PersonID int, "
-                    + "LastName varchar(255),"
-                    + "FirstName varchar(255),"
-                    + "Address varchar(255),"
-                    + "City varchar(255),"
-                    + "PRIMARY KEY (PersonID)"
-                    + ")");
-        } catch (SQLTransactionRollbackException e) {
-            System.out.println("Table already exists.");
-        }
+// create table
+try {
+    stat.executeUpdate("CREATE TABLE Persons ("
+            + "PersonID int, "
+            + "LastName varchar(255),"
+            + "FirstName varchar(255),"
+            + "Address varchar(255),"
+            + "City varchar(255),"
+            + "PRIMARY KEY (PersonID)"
+            + ")");
+} catch (SQLTransactionRollbackException e) {
+    System.out.println("Table already exists.");
+}
 ```
 ##### Insert Records using Statement
 ```java
-        // insert data
-        try {
-            stat.executeUpdate("INSERT INTO Persons ("
-                    + "PersonID, LastName, FirstName, Address, City) "
-                    + "VALUES ("
-                    + "1, 'Tan','Xiang','CMUA','Adelaide')");
+// insert data
+try {
+    stat.executeUpdate("INSERT INTO Persons ("
+            + "PersonID, LastName, FirstName, Address, City) "
+            + "VALUES ("
+            + "1, 'Tan','Xiang','CMUA','Adelaide')");
 
-        } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Record Already exists.");
-        }
+} catch (SQLIntegrityConstraintViolationException e) {
+    System.out.println("Record Already exists.");
+}
 ```
 ##### Insert Records using PrepareStatement
 ```java
-        // insert data
-        try {
-            String prepareSQL = "INSERT INTO Persons ("
-                    + "PersonID, LastName, FirstName, Address, City) "
-                    + "VALUES ("
-                    + "?,?,?,?,?"
-                    + ")";
-            PreparedStatement pres = conn.prepareStatement(prepareSQL);
-            pres.setInt(1, 2);
-            pres.setString(2, "San");
-            pres.setString(3, "Xiang");
-            pres.setString(4, "CMU");
-            pres.setString(5, "Pittsburgh");
-            pres.executeUpdate();
+// insert data
+try {
+    String prepareSQL = "INSERT INTO Persons ("
+            + "PersonID, LastName, FirstName, Address, City) "
+            + "VALUES ("
+            + "?,?,?,?,?"
+            + ")";
+    PreparedStatement pres = conn.prepareStatement(prepareSQL);
+    pres.setInt(1, 2);
+    pres.setString(2, "San");
+    pres.setString(3, "Xiang");
+    pres.setString(4, "CMU");
+    pres.setString(5, "Pittsburgh");
+    pres.executeUpdate();
 
-        } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Record Already exists.");
-        }
+} catch (SQLIntegrityConstraintViolationException e) {
+    System.out.println("Record Already exists.");
+}
 ```
 ##### Simple Query using Statement
 ```java
-        // print out the result 
-        ResultSet res = stat.executeQuery("SELECT * FROM PERSONS");
-        while (res.next()) {
-            System.out.println(res.getString("PersonID"));
-        }
+// print out the result 
+ResultSet res = stat.executeQuery("SELECT * FROM PERSONS");
+while (res.next()) {
+    System.out.println(res.getString("PersonID"));
+}
 ```
 ##### Simple Query using PrepareStatement
 ```java
-        // print out the result
-        String prepareSQL = "SELECT * FROM Persons WHERE Lastname = ?";
-        PreparedStatement pres = conn.prepareCall(prepareSQL);
-        pres.setString(1, "Tan");
-        ResultSet rest = pres.executeQuery();
-        while (rest.next()) {
-            System.out.println(rest.getString("FirstName"));
-        }
+ // print out the result
+ String prepareSQL = "SELECT * FROM Persons WHERE Lastname = ?";
+ PreparedStatement pres = conn.prepareCall(prepareSQL);
+ pres.setString(1, "Tan");
+ ResultSet rest = pres.executeQuery();
+ while (rest.next()) {
+     System.out.println(rest.getString("FirstName"));
+ }
 ```
 ### 6. Code Demo
 ```java
